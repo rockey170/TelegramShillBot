@@ -19,6 +19,7 @@ class ValidateSettingsTest(unittest.TestCase):
             "phone_number": "+18675309",
             "messages": {},
             "raid": {},
+            "random": {},
         }
 
         # assert legit returns none
@@ -152,31 +153,6 @@ class ValidateSettingsTest(unittest.TestCase):
         with self.assertRaises(Exception):
             bad_image["test-raid"]["image"] = 123
             tg_shill_bot.validate_raid_settings(bad_image)
-
-    def test_randomize_message(self):
-        channel = {
-            "message": ["message 1"],
-            "last_message": 0,
-        }
-        ty1 = "ty1"
-        ty2 = "ty2"
-        message = tg_shill_bot.randomize_message(channel, ty1, ty2)
-
-        self.assertIn(channel["message"][0], message)
-        self.assertIn(ty1, message)
-        self.assertIn(ty2, message)
-
-    def test_random_thank_you(self):
-        ty = tg_shill_bot.random_thank_you()
-
-        self.assertIn(ty, tg_shill_bot.thank_yous())
-
-    def test_next_message(self):
-        start = 0
-        channel = {"last_message": start, "message": ["msg1", "msg2"]}
-        message, channel = tg_shill_bot.next_message(channel)
-        self.assertIn(channel["message"][channel["last_message"]], message)
-        self.assertEqual(channel["last_message"], start + 1)
 
     def test_resolve_total_messages(self):
         go_chl = {"count": 1, "total_messages": 3, "loop": True}

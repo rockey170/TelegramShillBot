@@ -58,41 +58,13 @@ def log_red(message):
     return log_color(Style.RED.value, message)
 
 
-def thank_yous():
-    return [
-        "Cheers",
-        "Thank you",
-        "Thank you so much",
-        "Thanks",
-        "Thanks a bunch",
-        "Thanks a million",
-        "Ta",
-        "Tak",
-        "Dank u",
-        "Kiitos",
-        "Merci",
-        "Merci beaucoup",
-        "Danke",
-        "Danke schön",
-        "Danke vielmals",
-        "Mahalo",
-        "Grazie",
-        "Arigato",
-        "Obrigado",
-        "Gracias",
-        "Xie xie",
-        "Shukran",
-        "Hvala",
-        "Efharisto",
-        "Dhanyavaad",
-        "Spasiba",
-        "Salamat",
-        "Khob khun",
-    ]
+def random_texts():
+    settings = load_settings()
+    return settings["random"]["text"]
 
 
-def random_thank_you():
-    return thank_yous()[random.randrange(len(thank_yous()))]
+def random_text():
+    return random_texts()[random.randrange(len(random_texts()))]
 
 
 def header():
@@ -285,12 +257,16 @@ def image_exists(channel):
     return result
 
 
-def randomize_message(channel, ty1=None, ty2=None):
-    if not ty1:
-        ty1 = random_thank_you()
-    if not ty2:
-        ty2 = random_thank_you()
-    return channel["message"][channel["last_message"]] + "\n" + ty1 + " & " + ty2 + "!"
+def random_output(text1, text2):
+    settings = load_settings()
+    output = eval(settings["random"]["output"])
+    return output(text1, text2)
+
+
+def randomize_message(channel):
+    text1 = random_text()
+    text2 = random_text()
+    return channel["message"][channel["last_message"]] + random_output(text1, text2)
 
 
 def next_message(channel):
@@ -485,6 +461,7 @@ def validate_account_settings(settings):
             "phone_number": {"type": "string"},
             "messages": {"type": "object"},
             "raid": {"type": "object"},
+            "random": {"type": "object"},
         },
         "additionalProperties": False,
         "required": [
@@ -494,6 +471,7 @@ def validate_account_settings(settings):
             "phone_number",
             "messages",
             "raid",
+            "random",
         ],
     }
     jsonschema.validate(settings, schema)

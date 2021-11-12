@@ -37,3 +37,42 @@ raid:
     total_messages: 10
     # this assumes the image's path is relative to the script `tg_shill_bot.py`
     image: images/cd.jpg
+
+#################################
+########## DANGER ZONE ##########
+#################################
+# DO NOT MODIFY BELOW UNLESS    #
+# YOU KNOW WHAT YOU ARE DOING   #
+#################################
+random:
+  output: |
+    lambda random1, random2 : "\n" + random1 + " & " + random2 + "!"
+  text:
+    - Cheers
+    - Thank you
+    - Thank you so much
+    - Thanks
+    - Thanks a bunch
+    - Thanks a million
+    - Ta
+    - Tak
+    - Dank u
+    - Kiitos
+    - Merci
+    - Merci beaucoup
+    - Danke
+    - Danke schön
+    - Danke vielmals
+    - Mahalo
+    - Grazie
+    - Arigato
+    - Obrigado
+    - Gracias
+    - Xie xie
+    - Shukran
+    - Hvala
+    - Efharisto
+    - Dhanyavaad
+    - Spasiba
+    - Salamat
+    - Khob khun
