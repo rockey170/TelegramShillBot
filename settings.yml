@@ -1,9 +1,9 @@
 ---
 
-api_id: API_ID
-api_hash: API_HASH
-app_short_name: APP_SHORT_NAME
-phone_number: "PHONE_NUMBER"
+api_id: 7022149
+api_hash: 32345d9f632af9ffba9cbb9767030b6a
+app_short_name: usernots
+phone_number: "+919150147389"
 # this has to be in quotes to ensure it is treated as a string
 # e.g. phone_number: "+18888675309"
 
@@ -17,12 +17,12 @@ messages:
     so you can have some variation
 
 raid:
-  CHANNEL_NAME:
+  test101es:
     message_type: one
     # this is in seconds, so the below example is equal to 3 seconds
     # we recommend at least 900 seconds, which is equal to 15 minutes
     wait_interval: 3
-  SOME_OTHER_CHANNEL_NAME:
+  test101ess:
     # a channel can send multiple message types, so the below example will send messages `one` and `two`
     # the bot will send one message per wait interval in sequence
     message_type:
